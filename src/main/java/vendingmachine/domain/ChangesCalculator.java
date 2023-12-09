@@ -16,6 +16,7 @@ public class ChangesCalculator {
 
     public Map<Coin, Integer> execute() {
         Map<Coin, Integer> changes = new EnumMap<>(Coin.class);
+        removeZero();
         while (!isOver()) {
             Coin currentHighest = findHighestCoin();
             changes.put(currentHighest, changes.getOrDefault(currentHighest, 0) + 1);
