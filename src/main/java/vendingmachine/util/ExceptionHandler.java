@@ -15,4 +15,15 @@ public class ExceptionHandler {
             }
         }
     }
+
+    public static <T> void repeatUntilValid(Runnable runnable) {
+        while (true) {
+            try {
+                runnable.run();
+                break;            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

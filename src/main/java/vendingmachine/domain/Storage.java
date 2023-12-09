@@ -30,4 +30,8 @@ public class Storage {
         return storage.keySet().stream()
                 .anyMatch(product -> product.hasSameName(name));
     }
+
+    public static Map<Product, Integer> getStorage() {
+        return storage;
+    }
 }
