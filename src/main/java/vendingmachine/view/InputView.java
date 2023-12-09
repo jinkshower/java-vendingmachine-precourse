@@ -28,7 +28,7 @@ public class InputView {
     }
 
     public List<String[]> readProduct() {
-        System.out.println("상품명과 가격, 수량을 입력해 주세요.");
+        System.out.println("\n상품명과 가격, 수량을 입력해 주세요.");
         String input = Console.readLine();
         String[] split = input.split(";");
         validateProduct(split);
@@ -37,7 +37,7 @@ public class InputView {
     }
 
     public int readUserAmount() {
-        System.out.println("투입 금액을 입력해 주세요.");
+        System.out.println("\n투입 금액을 입력해 주세요.");
         try {
             String input = Console.readLine();
             return Integer.parseInt(input);

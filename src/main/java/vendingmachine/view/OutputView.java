@@ -16,13 +16,13 @@ public class OutputView {
     }
 
     public void printMachineCoins(Map<Coin, Integer> machineCoins) {
-        System.out.println("자판기가 보유한 동전");
+        System.out.println("\n자판기가 보유한 동전");
         String formattedCoins = formatCoin(machineCoins);
         System.out.println(formattedCoins);
     }
 
     public void printUserAmount(int amount) {
-        System.out.printf("투입 금액: %d원%n", amount);
+        System.out.printf("\n투입 금액: %d원%n", amount);
     }
 
     public void printChanges(Map<Coin, Integer> changes) {
