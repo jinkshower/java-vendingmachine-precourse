@@ -22,7 +22,7 @@ public class OutputView {
     }
 
     public void printUserAmount(int amount) {
-        System.out.printf("투입금액 : %d원%n", amount);
+        System.out.printf("투입 금액: %d원%n", amount);
     }
 
     public void printChanges(Map<Coin, Integer> changes) {
