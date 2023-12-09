@@ -11,13 +11,25 @@ public class Storage {
         storage.put(product, amount);
     }
 
-    public static void remove(Product product) {
-        storage.replace(product, storage.get(product) - 1);
+    public static void sell(String name) {
+        Product found = findByName(name);
+        storage.replace(found, storage.get(found) - 1);
     }
 
-    public static boolean isSoldOut(Product other) {
+    public static Product findByName(String name) {
         return storage.keySet().stream()
-                .filter(product -> product.isSame(other))
+                .filter(product -> product.hasSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 없는 상품입니다."));
+    }
+
+    public static int findPriceByName(String name) {
+        return storage.get(findByName(name));
+    }
+
+    public static boolean isSoldOut(String name) {
+        return storage.keySet().stream()
+                .filter(product -> product.hasSameName(name))
                 .allMatch(product -> storage.get(product) <= 0);
     }
 

@@ -31,7 +31,8 @@ public class MainController {
         ExceptionHandler.repeatUntilValid(this::handleStoreProduct);
         UserAmount userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
         outputView.printUserAmount(userAmount.getAmount());
-        int remainAmount = ExceptionHandler.repeatUntilValid(this::handlePurchase);
+
+        int price = ExceptionHandler.repeatUntilValid(this::handlePurchase);
     }
 
     private HeldAmount handleHeldAmount() {
@@ -57,6 +58,10 @@ public class MainController {
         if (!Storage.exist(input)) {
             throw new IllegalArgumentException("[ERROR] 없는 상품입니다.");
         }
-        return 0;
+        if (Storage.isSoldOut(input) && !Storage.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 모두 팔린 상품입니다.");
+        }
+        Storage.sell(input);
+        return Storage.findPriceByName(input);
     }
 }
