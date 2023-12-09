@@ -1,6 +1,11 @@
 package vendingmachine;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum Coin {
+
     COIN_500(500),
     COIN_100(100),
     COIN_50(50),
@@ -13,4 +18,16 @@ public enum Coin {
     }
 
     // 추가 기능 구현
+    public static Coin from(int amount) {
+        return Arrays.stream(values())
+                .filter(coin -> coin.amount == amount)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR]유효한 금액이 아닙니다"));
+    }
+
+    public static List<Integer> amounts() {
+        return Arrays.stream(values())
+                .map(coin -> coin.amount)
+                .collect(Collectors.toList());
+    }
 }
