@@ -18,7 +18,7 @@ public class ChangesCalculator {
         Map<Coin, Integer> changes = new EnumMap<>(Coin.class);
         removeZero();
         while (!isOver()) {
-            Coin currentHighest = findHighestCoin();
+            Coin currentHighest = findHighestCoin(userAmount);
             changes.put(currentHighest, changes.getOrDefault(currentHighest, 0) + 1);
             machineChanges.replace(currentHighest, machineChanges.get(currentHighest) - 1);
             removeZero();
@@ -35,11 +35,11 @@ public class ChangesCalculator {
         }
     }
 
-    private Coin findHighestCoin() {
+    private Coin findHighestCoin(int userAmount) {
         return machineChanges.keySet().stream()
+                .filter(coin -> coin.getAmount() <= userAmount)
                 .max(Comparator.comparing(Coin::getAmount))
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] rr찾을 수 없습니다."));
-
     }
 
     private int findMinimumAmount() {
