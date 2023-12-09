@@ -24,7 +24,7 @@ public class Storage {
     }
 
     public static int findPriceByName(String name) {
-        return storage.get(findByName(name));
+        return findByName(name).getPrice();
     }
 
     public static boolean isSoldOut(String name) {

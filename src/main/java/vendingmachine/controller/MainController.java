@@ -33,6 +33,8 @@ public class MainController {
         outputView.printUserAmount(userAmount.getAmount());
 
         int price = ExceptionHandler.repeatUntilValid(this::handlePurchase);
+        userAmount.minus(price);
+        outputView.printUserAmount(userAmount.getAmount());
     }
 
     private HeldAmount handleHeldAmount() {
