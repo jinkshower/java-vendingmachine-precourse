@@ -2,6 +2,7 @@ package vendingmachine.controller;
 
 import java.util.List;
 import java.util.Map;
+import vendingmachine.domain.ChangesCalculator;
 import vendingmachine.domain.Coin;
 import vendingmachine.domain.HeldAmount;
 import vendingmachine.domain.Product;
@@ -43,7 +44,9 @@ public class MainController {
     }
 
     private void returnChange() {
-
+        ChangesCalculator changesCalculator = new ChangesCalculator(machineChanges, userAmount.getAmount());
+        Map<Coin, Integer> changes = changesCalculator.execute();
+        outputView.printChanges(changes);
     }
 
     private HeldAmount handleHeldAmount() {

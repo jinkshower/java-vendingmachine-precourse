@@ -25,6 +25,12 @@ public class OutputView {
         System.out.printf("투입금액 : %d원%n", amount);
     }
 
+    public void printChanges(Map<Coin, Integer> changes) {
+        System.out.println("잔돈");
+        String formattedCoins = formatCoin(changes);
+        System.out.println(formattedCoins);
+    }
+
     private String formatCoin(Map<Coin, Integer> machineCoins) {
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Coin coin : machineCoins.keySet()) {
