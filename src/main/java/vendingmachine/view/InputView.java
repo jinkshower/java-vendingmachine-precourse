@@ -13,8 +13,13 @@ public class InputView {
     private InputView() {
     }
 
-    public String readPurchaseAmount() {
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
-        return Console.readLine();
+    public int readHeldAmount() {
+        System.out.println("자판기가 보유하고 있는 금액을 입력해 주세요.");
+        try {
+            String input = Console.readLine();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]유효한 금액을 입력해주세요.");
+        }
     }
 }
