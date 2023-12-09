@@ -8,8 +8,15 @@ public class Product {
     private final int price;
 
     public Product(String name, int price) {
+        validate(price);
         this.name = name;
         this.price = price;
+    }
+
+    private void validate(int price) {
+        if (price % 10 != 0) {
+            throw new IllegalArgumentException("[ERROR]금액은 10단위로 나누어져야 합니다.");
+        }
     }
 
     public boolean hasSameName(String name) {
