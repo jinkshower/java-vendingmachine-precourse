@@ -23,10 +23,6 @@ public class Product {
         return this.name.equals(name);
     }
 
-    public boolean isSame(Product other) {
-        return this.name.equals(other.name);
-    }
-
     public int getPrice() {
         return price;
     }

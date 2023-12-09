@@ -51,7 +51,4 @@ public class Storage {
                 .anyMatch(product -> product.hasSameName(name));
     }
 
-    public static Map<Product, Integer> getStorage() {
-        return storage;
-    }
 }

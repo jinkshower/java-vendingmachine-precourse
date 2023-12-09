@@ -22,8 +22,4 @@ public class UserAmount {
     public void minus(int decrement) {
         amount -= decrement;
     }
-
-    public boolean isLessThan(int amount) {
-        return this.amount < amount;
-    }
 }
