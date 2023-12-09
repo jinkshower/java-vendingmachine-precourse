@@ -8,7 +8,7 @@ import java.util.Map;
 public class RandomCoinGenerator {
 
     public Map<Coin, Integer> generate(int machineAmount) {
-        Map<Coin, Integer> machineChanges = new EnumMap<>(Coin.class);
+        Map<Coin, Integer> machineChanges = initialize();
         int randomPickedAmount = 0;
 
         while (machineAmount > 10) {
@@ -21,6 +21,14 @@ public class RandomCoinGenerator {
             machineAmount -= randomPickedAmount;
         }
         return machineChanges;
+    }
+
+    private Map<Coin, Integer> initialize() {
+        Map<Coin, Integer> map = new EnumMap<>(Coin.class);
+        for (Coin coin: Coin.values()) {
+            map.put(coin, 0);
+        }
+        return map;
     }
 
     private int pickRandom(List<Integer> coinAmounts) {
