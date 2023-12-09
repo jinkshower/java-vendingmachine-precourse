@@ -46,6 +46,11 @@ public class InputView {
         }
     }
 
+    public String readPurchaseProduct() {
+        System.out.println("구매할 상품명을 입력해 주세요.");
+        return Console.readLine();
+    }
+
     private void validateProduct(String[] split) {
         for (String string: split) {
             if (!PRODUCT_REGEX.matcher(string).matches()) {
