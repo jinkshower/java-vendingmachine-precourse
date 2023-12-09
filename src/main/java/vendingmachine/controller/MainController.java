@@ -26,14 +26,9 @@ public class MainController {
     }
 
     public void run() {
-        HeldAmount heldAmount = ExceptionHandler.repeatUntilValid(this::handleHeldAmount);
-        RandomCoinGenerator randomCoinGenerator = new RandomCoinGenerator();
-        machineChanges = randomCoinGenerator.generate(heldAmount.getAmount());
-        outputView.printMachineCoins(machineChanges);
-
+        makeMachineChanges();
         ExceptionHandler.repeatUntilValid(this::handleStoreProduct);
-        userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
-        outputView.printUserAmount(userAmount.getAmount());
+        storeUserAmount();
 
         while (!isPurchaseOver()) {
             int price = ExceptionHandler.repeatUntilValid(this::handlePurchase);
@@ -41,6 +36,18 @@ public class MainController {
             outputView.printUserAmount(userAmount.getAmount());
         }
         returnChange();
+    }
+
+    private void makeMachineChanges() {
+        HeldAmount heldAmount = ExceptionHandler.repeatUntilValid(this::handleHeldAmount);
+        RandomCoinGenerator randomCoinGenerator = new RandomCoinGenerator();
+        machineChanges = randomCoinGenerator.generate(heldAmount.getAmount());
+        outputView.printMachineCoins(machineChanges);
+    }
+
+    private void storeUserAmount() {
+        userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
+        outputView.printUserAmount(userAmount.getAmount());
     }
 
     private void returnChange() {
