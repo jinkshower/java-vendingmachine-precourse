@@ -1,6 +1,9 @@
 package vendingmachine.controller;
 
+import java.util.Map;
+import vendingmachine.domain.Coin;
 import vendingmachine.domain.HeldAmount;
+import vendingmachine.domain.RandomCoinGenerator;
 import vendingmachine.util.ExceptionHandler;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -17,7 +20,9 @@ public class MainController {
 
     public void run() {
         HeldAmount heldAmount = ExceptionHandler.repeatUntilValid(this::handleHeldAmount);
-        System.out.println(heldAmount.getAmount());
+        RandomCoinGenerator randomCoinGenerator = new RandomCoinGenerator();
+        Map<Coin, Integer> machineChanges = randomCoinGenerator.generate(heldAmount.getAmount());
+        outputView.printMachineCoins(machineChanges);
     }
 
     private HeldAmount handleHeldAmount() {
