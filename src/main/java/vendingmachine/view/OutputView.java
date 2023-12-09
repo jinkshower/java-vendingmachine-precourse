@@ -27,8 +27,13 @@ public class OutputView {
 
     public void printChanges(Map<Coin, Integer> changes) {
         System.out.println("잔돈");
-        String formattedCoins = formatCoin(changes);
-        System.out.println(formattedCoins);
+        String output = "없음";
+        if (!changes.isEmpty()) {
+            String formattedCoins = formatCoin(changes);
+            System.out.println(formattedCoins);
+            return;
+        }
+        System.out.println(output);
     }
 
     private String formatCoin(Map<Coin, Integer> machineCoins) {
