@@ -30,6 +30,7 @@ public class MainController {
 
         ExceptionHandler.repeatUntilValid(this::handleStoreProduct);
         UserAmount userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
+        outputView.printUserAmount(userAmount.getAmount());
     }
 
     private HeldAmount handleHeldAmount() {
