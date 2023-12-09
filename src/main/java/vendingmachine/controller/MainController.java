@@ -16,6 +16,7 @@ public class MainController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private UserAmount userAmount;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -29,12 +30,14 @@ public class MainController {
         outputView.printMachineCoins(machineChanges);
 
         ExceptionHandler.repeatUntilValid(this::handleStoreProduct);
-        UserAmount userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
+        userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
         outputView.printUserAmount(userAmount.getAmount());
 
-        int price = ExceptionHandler.repeatUntilValid(this::handlePurchase);
-        userAmount.minus(price);
-        outputView.printUserAmount(userAmount.getAmount());
+        while (!isPurchaseOver()) {
+            int price = ExceptionHandler.repeatUntilValid(this::handlePurchase);
+            userAmount.minus(price);
+            outputView.printUserAmount(userAmount.getAmount());
+        }
     }
 
     private HeldAmount handleHeldAmount() {
@@ -65,5 +68,9 @@ public class MainController {
         }
         Storage.sell(input);
         return Storage.findPriceByName(input);
+    }
+
+    private boolean isPurchaseOver() {
+        return Storage.isEmpty() || Storage.findMinimumPrice() > userAmount.getAmount();
     }
 }
