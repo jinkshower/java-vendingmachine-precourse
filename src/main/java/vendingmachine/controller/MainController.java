@@ -54,5 +54,9 @@ public class MainController {
 
     private int handlePurchase() {
         String input = inputView.readPurchaseProduct();
+        if (!Storage.exist(input)) {
+            throw new IllegalArgumentException("[ERROR] 없는 상품입니다.");
+        }
+        return 0;
     }
 }
