@@ -75,6 +75,9 @@ public class MainController {
         if (Storage.isSoldOut(input) && !Storage.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 모두 팔린 상품입니다.");
         }
+        if (Storage.findPriceByName(input) > userAmount.getAmount()) {
+            throw new IllegalArgumentException("[ERROR] 구매할 수 없습니다");
+        }
         Storage.sell(input);
         return Storage.findPriceByName(input);
     }
