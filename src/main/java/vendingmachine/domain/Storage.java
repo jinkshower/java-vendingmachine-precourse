@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,13 @@ public class Storage {
 
     public static int findPriceByName(String name) {
         return findByName(name).getPrice();
+    }
+
+    public static int findMinimumPrice() {
+        return storage.keySet().stream()
+                .min(Comparator.comparing(Product::getPrice))
+                .map(Product::getPrice)
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 에러"));
     }
 
     public static boolean isSoldOut(String name) {
