@@ -7,11 +7,13 @@ import java.util.Map;
 
 public class RandomCoinGenerator {
 
+    private static final int MINIMUM_COIN_AMOUNT = 10;
+
     public Map<Coin, Integer> generate(int machineAmount) {
         Map<Coin, Integer> machineChanges = initialize();
         int randomPickedAmount = 0;
 
-        while (machineAmount > 10) {
+        while (machineAmount > MINIMUM_COIN_AMOUNT) {
             randomPickedAmount = pickRandom(Coin.amounts());
             while (randomPickedAmount > machineAmount) {
                 randomPickedAmount = pickRandom(Coin.amounts());

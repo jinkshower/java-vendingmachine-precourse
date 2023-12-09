@@ -1,9 +1,9 @@
 package vendingmachine.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static vendingmachine.domain.Coin.COIN_100;
 import static vendingmachine.domain.Coin.COIN_50;
+import static vendingmachine.domain.Coin.COIN_500;
 
 import java.util.EnumMap;
 import java.util.Map;

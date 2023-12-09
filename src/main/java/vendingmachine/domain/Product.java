@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Product {
 
+    private static final int BASIC_UNIT = 10;
+
     private final String name;
     private final int price;
 
@@ -14,7 +16,7 @@ public class Product {
     }
 
     private void validate(int price) {
-        if (price % 10 != 0) {
+        if (price % BASIC_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR]금액은 10단위로 나누어져야 합니다.");
         }
     }

@@ -1,4 +1,4 @@
-package vendingmachine;
+package vendingmachine.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,5 @@ class RandomCoinGeneratorTest {
     void createCoins() {
         RandomCoinGenerator randomCoinGenerator = new RandomCoinGenerator();
         System.out.println(randomCoinGenerator.generate(450));
-
     }
-
 }
