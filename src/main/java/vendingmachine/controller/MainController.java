@@ -17,6 +17,7 @@ public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
     private UserAmount userAmount;
+    private Map<Coin, Integer> machineChanges;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -26,7 +27,7 @@ public class MainController {
     public void run() {
         HeldAmount heldAmount = ExceptionHandler.repeatUntilValid(this::handleHeldAmount);
         RandomCoinGenerator randomCoinGenerator = new RandomCoinGenerator();
-        Map<Coin, Integer> machineChanges = randomCoinGenerator.generate(heldAmount.getAmount());
+        machineChanges = randomCoinGenerator.generate(heldAmount.getAmount());
         outputView.printMachineCoins(machineChanges);
 
         ExceptionHandler.repeatUntilValid(this::handleStoreProduct);
@@ -38,6 +39,11 @@ public class MainController {
             userAmount.minus(price);
             outputView.printUserAmount(userAmount.getAmount());
         }
+        returnChange();
+    }
+
+    private void returnChange() {
+
     }
 
     private HeldAmount handleHeldAmount() {

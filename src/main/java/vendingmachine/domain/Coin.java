@@ -33,6 +33,10 @@ public enum Coin {
                 .collect(Collectors.toList());
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public String getMessage(int count) {
         return message + " - " + count + "개";
     }
