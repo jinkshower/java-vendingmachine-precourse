@@ -36,6 +36,16 @@ public class InputView {
         return parseInput(split);
     }
 
+    public int readUserAmount() {
+        System.out.println("투입 금액을 입력해 주세요.");
+        try {
+            String input = Console.readLine();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]유효한 금액을 입력해주세요.");
+        }
+    }
+
     private void validateProduct(String[] split) {
         for (String string: split) {
             if (!PRODUCT_REGEX.matcher(string).matches()) {

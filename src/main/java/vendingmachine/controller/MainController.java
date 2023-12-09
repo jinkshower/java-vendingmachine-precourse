@@ -7,6 +7,7 @@ import vendingmachine.domain.HeldAmount;
 import vendingmachine.domain.Product;
 import vendingmachine.domain.RandomCoinGenerator;
 import vendingmachine.domain.Storage;
+import vendingmachine.domain.UserAmount;
 import vendingmachine.util.ExceptionHandler;
 import vendingmachine.view.InputView;
 import vendingmachine.view.OutputView;
@@ -28,7 +29,7 @@ public class MainController {
         outputView.printMachineCoins(machineChanges);
 
         ExceptionHandler.repeatUntilValid(this::handleStoreProduct);
-        System.out.println(Storage.getStorage());
+        UserAmount userAmount = ExceptionHandler.repeatUntilValid(this::handleUserAmount);
     }
 
     private HeldAmount handleHeldAmount() {
@@ -42,5 +43,10 @@ public class MainController {
             Product product = new Product(strings[0], Integer.parseInt(strings[1]));
             Storage.save(product, Integer.parseInt(strings[2]));
         }
+    }
+
+    private UserAmount handleUserAmount() {
+        int userInput = inputView.readUserAmount();
+        return new UserAmount(userInput);
     }
 }
